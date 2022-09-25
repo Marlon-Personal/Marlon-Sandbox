@@ -1,0 +1,24 @@
+{% for collection in collections %} 
+  {% unless collection.title =='Home page' %}
+<h2 style="color:{{settings.primary-color}}">{{ collection.title }}</h2>
+<div style="display:flex;">
+ 
+  
+{% for product in collection.products %} 
+<div style="display:block;">
+ {% for image in product.images %}
+  <a href="{{ image.src | img_url: 'large' }}">
+    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+  </a>
+{% endfor %}
+<h3 style="color:{{settings.secondary-color}}">{{product.title}}</h3>
+<h4>{{product.price | money }}</h4>
+</div>  
+{% endfor %}
+  
+
+  
+</div>
+{%endunless%}
+
+{% endfor %}
